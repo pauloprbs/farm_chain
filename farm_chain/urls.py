@@ -16,8 +16,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.shortcuts import redirect
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('blockchain.urls')),  # Inclui as URLs do app blockchain
+    path('', lambda request: redirect('home')),  # Redireciona para a interface
+    path('web/', include('web_interface.urls')),
 ]

@@ -34,32 +34,7 @@ class NewTransactionView(APIView):
 
         return Response({
             'message': "Transaction added to the next block."
-        })  
-        '''
-        required_fields = ['sender', 'recipient', 'medicine', 'quantity']
-        
-        # Verificando se todos os campos foram enviados
-        if not all(field in request.data for field in required_fields):
-            return Response({"message": "Missing required fields."}, status=status.HTTP_400_BAD_REQUEST)
-        
-        blockchain = Blockchain()
-        sender = request.data['sender']
-        recipient = request.data['recipient']
-        medicine = request.data['medicine']
-        quantity = request.data['quantity']
-        
-        # Adiciona a nova transação
-        blockchain.new_transaction(sender, recipient, medicine, quantity)
-        
-        # Minerando o próximo bloco para adicionar a transação
-        last_proof = blockchain.last_block['proof']
-        proof = blockchain.proof_of_work(last_proof)
-        blockchain.new_transaction(sender="0", recipient="miner", medicine="N/A", quantity=1)  # Transação fictícia para o minerador
-        
-        # Criando o novo bloco
-        new_block = blockchain.new_block(proof)
-        
-        return Response({"message": "Transaction added to the next block.", "block": new_block}, status=status.HTTP_201_CREATED)'''
+        }) 
 
 
 class MineBlockView(APIView):
@@ -79,13 +54,5 @@ class MineBlockView(APIView):
             'message': "New block mined",
             'block': block
         })
-        '''
-        blockchain = Blockchain()
-        last_proof = blockchain.last_block['proof']
-        proof = blockchain.proof_of_work(last_proof)
-        blockchain.new_transaction(sender="0", recipient="miner", medicine="N/A", quantity=1)  # Transação fictícia para o minerador
-        
-        block = blockchain.new_block(proof)
-        return Response(block, status=status.HTTP_200_OK)'''
 
     
