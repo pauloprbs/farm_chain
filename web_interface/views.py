@@ -45,41 +45,11 @@ def new_transaction(request):
     else:
         # Se o método não for POST, renderize o formulário para criar uma transação
         return render(request, 'web_interface/new_transaction.html')
-    '''if request.method == 'POST':
-        # Capturar os dados do formulário
-        transaction_data = {
-            'id_medicamento': request.POST.get('id_medicamento'),
-            'nome': request.POST.get('nome'),
-            'lote': request.POST.get('lote'),
-            'data_validade': request.POST.get('data_validade'),
-            'fabricante': request.POST.get('fabricante'),
-            'status': request.POST.get('status'),
-        }
-
-        # Verificar se todos os campos foram preenchidos
-        if not all(transaction_data.values()):
-            return JsonResponse({'error': 'Todos os campos são obrigatórios!'}, status=400)
-
-        # Enviar os dados para a API REST
-        try:
-            response = requests.post(f"{settings.API_URL}/new_transaction/", json=transaction_data)
-            if response.status_code == 201:  # Sucesso na criação
-                return JsonResponse({'message': 'Transação enviada com sucesso!', 'data': transaction_data})
-            else:
-                return JsonResponse({'error': 'Erro ao criar transação na API', 'details': response.json()}, status=500)
-        except requests.exceptions.RequestException as e:
-            return JsonResponse({'error': 'Erro de conexão com a API', 'details': str(e)}, status=500)
-
-    # Renderizar o formulário para GET
-    return render(request, 'web_interface/new_transaction.html')
-    '''
 
 def mine_block(request):
     response = requests.get(f"{API_URL}/mine_block/")
     formatted_block = json.dumps(response.json(), indent=4)  # Formatar com indentação
     return render(request, 'web_interface/block_mined.html', {'block': formatted_block})
-    # response = requests.get(f"{API_URL}/mine_block/")
-    #return render(request, 'web_interface/block_mined.html', {'response': response.json()})
 
 def view_blockchain(request):
     # Fazendo a requisição para a API e obtendo os dados da blockchain
@@ -90,5 +60,3 @@ def view_blockchain(request):
     
     # Retornando o template com o JSON formatado
     return render(request, 'web_interface/blockchain.html', {'blockchain': formatted_json})
-    #response = requests.get(f"{API_URL}/blockchain/")
-    #return render(request, 'web_interface/blockchain.html', {'blockchain': response.json()})
