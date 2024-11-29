@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bloco Minerado</title>
+    <title>Resultado da Transação</title>
     <style>
         body {
             font-family: 'Arial', sans-serif;
@@ -29,20 +29,21 @@
             color: #555;
             margin-bottom: 20px;
         }
-        pre {
-            background-color: #282c34;
-            color: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            font-size: 1rem;
-            text-align: left;
-            white-space: pre-wrap;
-            word-wrap: break-word;
+        .message {
+            font-size: 1.2rem;
+            padding: 15px;
             margin-bottom: 20px;
-            overflow-x: auto;
+            border-radius: 8px;
         }
-        .back-button {
-            margin-top: 20px;
+        .success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
         }
         a {
             display: inline-block;
@@ -57,16 +58,25 @@
         a:hover {
             background-color: #0056b3;
         }
+        .back-button {
+            margin-top: 20px;
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Bloco Minerado</h1>
+        <h1>Resultado da Transação</h1>
 
-        <p>O novo bloco foi minerado com sucesso! Aqui estão os detalhes:</p>
-
-        <!-- Exibir o JSON formatado corretamente -->
-        <pre>{{ block | safe }}</pre>
+        {% if message %}
+            <div class="message success">
+                <p>{{ message }}</p>
+            </div>
+        {% elif error %}
+            <div class="message error">
+                <p>{{ error }}</p>
+                <p>{{ details.message }}</p>
+            </div>
+        {% endif %}
 
         <!-- Link para voltar à página inicial -->
         <div class="back-button">

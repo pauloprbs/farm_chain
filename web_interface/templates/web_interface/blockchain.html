@@ -1,10 +1,66 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-br">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blockchain</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f6f9;
+        }
+        .container {
+            max-width: 900px;
+            margin: 50px auto;
+            padding: 30px;
+            background-color: #fff;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            text-align: center;
+        }
+        h1 {
+            font-size: 2.5rem;
+            color: #333;
+        }
+        pre {
+            background-color: #282c34;
+            color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            font-size: 1rem;
+            text-align: left;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            margin-bottom: 20px;
+            overflow-x: auto;
+        }
+        button {
+            font-size: 1.2rem;
+            padding: 12px 25px;
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
 <body>
-    <h1>Visualizar Blockchain</h1>
-    <pre>{{ blockchain | safe }}</pre>
+    <div class="container">
+        <h1>Blockchain</h1>
+        
+        <pre>{{ blockchain | safe }}</pre>
+
+        <!-- Substituir o link por um botão que redireciona para a página inicial -->
+        <form action="{% url 'home' %}" method="get">
+            <button type="submit">Voltar à Página Inicial</button>
+        </form>
+    </div>
 </body>
 </html>

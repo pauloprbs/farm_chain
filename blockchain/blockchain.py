@@ -5,6 +5,10 @@ import time
 class Blockchain:
     _instance = None  # Atributo de classe para armazenar a instância
 
+    def __init__(self):
+        # implementação da classe
+        pass
+
     def __new__(cls, *args, **kwargs):
         """
         Método para garantir que a blockchain seja uma instância única
